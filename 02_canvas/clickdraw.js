@@ -14,6 +14,8 @@ var warningTimeout;
 var warningBox = document.createElement("div");
 warningBox.className = "warning";
 
+context.beginPath();
+
 function displayWarning(msg) { //display the warning and make sure it only stays for a while
   warningBox.innerHTML = msg;
 
@@ -45,10 +47,13 @@ var clear = function clr_canvas(evt) {
 
 
 var dot = function make_dot(x, y) {
-    context.fillStyle = "#00ff00";
-    context.beginPath(); //beginPath starts a new path and gets rid of all other paths
-    context.ellipse(10,10,10,10,360,0,360);
-context.ellipse(x, y, 10, 10, 360, 0, 360);
+	context.fillStyle = "#00ff00"; //beginPath starts a new path and gets rid of all other paths
+    if (drawn !=0){
+      	context.fillStyle = "#ffffff";
+	context.lineTo(x,y);
+    }
+context.fillStyle="#00ff00:
+    context.ellipse(x,y,10,10,360,0,360);
     context.fill();
     drawn +=1;
 

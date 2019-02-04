@@ -1,8 +1,8 @@
 /*
 Team GuptasCreatedMaf (Shafali Gupta, Maryann Foley)
 SoftDev2 pd 8
-K1 - ...and I want to Paint It Better
-2019-01-31
+K02 - Connecting the Dots
+2019-02-03
 */
 
 
@@ -13,6 +13,8 @@ var drawn = 0;
 var warningTimeout;
 var warningBox = document.createElement("div");
 warningBox.className = "warning";
+var lastX=false
+var lastY=false
 
 context.beginPath();
 
@@ -41,19 +43,27 @@ var clear = function clr_canvas(evt) {
     else{
       evt.preventDefault(); //prevents clear from happening unless something was drawn
       displayWarning( //displays this warning if the canvas was empty originally
-              "You have to draw something to clear it first"
+              "You have to draw something to clear the canvas!"
             );    }
 }
 
 
 var dot = function make_dot(x, y) {
-	context.fillStyle = "#00ff00"; //beginPath starts a new path and gets rid of all other paths
-    if (drawn !=0){
-      	context.fillStyle = "#ffffff";
-	context.lineTo(x,y);
+	context.strokeStyle = "#ff0000"; //beginPath starts a new path and gets rid of all other paths
+  context.fillStyle="#000000";
+  if (drawn !=0){
+      context.beginPath();
+      context.moveTo(lastX,lastY); //start at last point
+      context.lineTo(x,y); //create a line to end point
+      context.stroke(); //2 paths because one is stroke one is fill
+      context.beginPath();
+      context.ellipse(lastX,lastY,5,5,360,0,360); //draw over the last circle because if would have a red line otherwise
+      context.fill();
     }
-context.fillStyle="#00ff00:
-    context.ellipse(x,y,10,10,360,0,360);
+    lastX=x;
+    lastY=y;
+    context.beginPath();
+    context.ellipse(x,y,5,5,360,0,360);
     context.fill();
     drawn +=1;
 

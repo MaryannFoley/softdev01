@@ -10,10 +10,30 @@ import json
 
 from pprint import pprint
 
-SERVER_ADDR="46.101.242.188"
+SERVER_ADDR="68.183.120.187"
 client=MongoClient(SERVER_ADDR,27017)
 db=client.mongolia
 collection=db.pokedex
-print(client.test_database)
-print(db.list_collection_names())
+with open('pokedex.json') as f:
+    data = json.load(f)
+    collection.insert_many(data["pokemon"])
 
+
+def drop():
+    client.drop_database( "mongolia")
+
+def build_db(ipaddress):
+    drop()
+    client.close()
+    client = MongoClient(ipaddress, 27017)
+    db = client['mongolia']
+    collection = db['pokedex']
+    with open('pokedex.json') as f:
+        data = json.load(f)
+        collection.insert_many(data["pokemon"])
+
+def find_pokemon(name):
+    return collection.find_one({"name":name})
+
+
+#print(collection.find_one())

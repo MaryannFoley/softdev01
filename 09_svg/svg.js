@@ -19,7 +19,7 @@ var lastY=false
 var clear = function(evt) {
    console.log("uhhh");
     if (drawn !=0){ //only if there was something drawn
-      pic.innerhtml="";
+      pic.innerHTML="";
       drawn=0;
     }
     else{

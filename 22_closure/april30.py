@@ -1,3 +1,41 @@
+#Maryann Foley
+#SoftDev2 pd8
+#K22 -- closure
+#2019-04-30 
+
+def repeat(x):
+    def rree(num):
+        return x*num
+    return rree
+
+r1=repeat("hello")
+r2=repeat("goodbye")
+print(r1(5))
+print(r2(3))
+print(repeat("cool")(3))
+
+
+def make_counter():
+    x=0
+    def count():
+        nonlocal x
+        x+=1
+        return(x)
+    def curr():
+        return(x)
+    return count,curr
+
+c1,display1=make_counter()
+print(c1())
+print(c1())
+print(c1())
+print("Display count:",str(display1()))
+
+c2,display2=make_counter()
+print(c2())
+print("Display count:",str(display2()))
+
+'''
 def inc(x):
     return x+1
 
@@ -31,26 +69,16 @@ print(contains15(range(1,20)))
 print(contains15([15,25,35]))
 
 print(contains15)
-
+'''
 #To create a closure:
 #define nested fxn
 #nested fxn must refer to var defined in enclosing fxn
 #return nested fxn
 
-def repeat(x):
-    def rree(num):
-        return x*num
-    return rree
-
-r1=repeat("hello")
-r2=repeat("goodbye")
-print(r1(5))
-print(r2(3))
-print(repeat("cool")(3))
-
+'''
 def outer1():
     x="foo"
-    y="poo"
+    y="boo"
     def inner():
         nonlocal x
         x="bar"
@@ -59,3 +87,4 @@ def outer1():
     return x,y
 
 print(outer1())
+'''

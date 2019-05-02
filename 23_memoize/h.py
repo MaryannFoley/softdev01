@@ -17,4 +17,13 @@ def fib(f):
     def helper(x):
         if x in l:
             return l[x]
-        
+        x =calcf(x)
+        l[x]=x
+        return x
+
+def calcf(x):
+    if x <=0:
+        return 0
+    if x ==1:
+        return 1
+    return calcf(x-1) +calcf(x-2)
